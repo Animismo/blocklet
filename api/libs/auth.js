@@ -34,13 +34,13 @@ const walletJSON = wallet.toJSON();
 
 const walletAuth = new WalletAuthenticator({
   wallet: walletJSON,
-  baseUrl: isNetlify ? env.baseUrl.replace(netlifyPrefix, '') : env.baseUrl,
-  appInfo: {
+  baseUrl: isNetlify ? env.baseUrl.replace(netlifyPrefix, '') : '',
+  appInfo: ({ baseUrl }) => ({
     name: env.appName,
     description: env.appDescription,
     icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
-    link: isNetlify ? env.baseUrl.replace(netlifyPrefix, '') : env.baseUrl.replace(process.env.PORT || '3030', '3000'),
-  },
+    link: isNetlify ? baseUrl.replace(netlifyPrefix, '') : baseUrl.replace(process.env.PORT || '3030', '3000'),
+  }),
   chainInfo: {
     host: env.chainHost,
     id: env.chainId,
