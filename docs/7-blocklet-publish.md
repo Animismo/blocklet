@@ -15,7 +15,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "directory": "_blocklet/"
+    "directory": ".blocklet/bundle"
   },
 }
 ```

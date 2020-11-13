@@ -2,7 +2,7 @@
   "name": "crypto-2048",
   "description": "A simple blockchain game that demos capabilities of ArcBlock technologies such as blockchain, did, abtnode",
   "title": "Crypto 2048",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "keywords": [
     "blockchain",
     "forge",
@@ -78,15 +78,15 @@
     "lint": "eslint src api",
     "precommit": "yarn lint",
     "prepush": "yarn lint",
-    "clean": "rm -rf build api/dist _blocklet",
+    "clean": "rm -rf build api/dist .blocklet",
     "start": "npm-run-all --parallel start:*",
     "start:client": "react-scripts start",
     "start:server": "nodemon api/index.js -w api",
     "bundle": "yarn clean && npm-run-all bundle:*",
     "bundle:client": "PUBLIC_URL=\"/z8iZqHcgrbAntF8SZMWmNMYLvJB5VjFAMndzo\" REACT_APP_APP_NAME=\"Crypto 2048\" react-scripts build",
     "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js",
-    "prerelease": "npm run bundle && rm -f _blocklet/build/**/**/*.js.map",
-    "release": "npm publish _blocklet",
+    "prerelease": "npm run bundle && rm -f .blocklet/bundle/build/**/**/*.js.map",
+    "release": "npm publish .blocklet/bundle",
     "postrelease": "node tools/post-publish.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -107,7 +107,6 @@
     ]
   },
   "devDependencies": {
-    "@abtnode/cli": "^0.6.32",
     "babel-eslint": "^10.0.3",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",

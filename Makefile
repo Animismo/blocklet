@@ -9,6 +9,11 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
+github-action-init:
+	@echo "Initializing the repo..."
+	@sudo npm install -g @abtnode/cli
+	@make dep
+
 travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 
