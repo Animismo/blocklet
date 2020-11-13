@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 const env = require('../../libs/env');
@@ -20,19 +21,23 @@ module.exports = {
   onAuth: async ({ claims, userDid, token, storage }) => {
     try {
       const profile = claims.find(x => x.type === 'profile');
+
       const exist = await User.findOne({ did: userDid });
       if (exist) {
-        exist.name = profile.fullName;
-        exist.avatar = profile.avatar;
-        await exist.save();
+        const result = await User.update(
+          { _id: exist._id },
+          { $set: { name: profile.fullName, avatar: profile.avatar } },
+          { multi: false, upsert: false }
+        );
+        console.log('update user', { userDid, result });
       } else {
-        const user = new User({
+        const result = await User.insert({
           did: userDid,
           name: profile.fullName,
           email: profile.email,
           avatar: profile.avatar,
         });
-        await user.save();
+        console.log('create user', { userDid, result });
       }
 
       // Generate new session token that client can save to localStorage
