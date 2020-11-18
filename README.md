@@ -4,6 +4,10 @@
 
 **For complete and working version of this game, please checkout release branch.**
 
+## Install on my ABT Node
+
+[![Install on my ABT Node](https://raw.githubusercontent.com/blocklet/development-guide/main/assets/install_on_abtnode.svg)](https://install.arcblock.io/?action=blocklet-install&meta_url=https%3A%2F%2Fblocklet.arcblock.io%2Fblocklet%2Fz8iZqHcgrbAntF8SZMWmNMYLvJB5VjFAMndzo.json)
+
 ## Requirements
 
 - Install `@abtnode/cli`
