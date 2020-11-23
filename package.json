@@ -12,9 +12,7 @@
     "blocklet.js",
     "api",
     "build",
-    "logo.png",
     "screenshots",
-    "blocklet.json",
     "blocklet.md"
   ],
   "publishConfig": {
@@ -84,8 +82,8 @@
     "start:server": "nodemon api/index.js -w api",
     "bundle": "yarn clean && npm-run-all bundle:*",
     "bundle:client": "PUBLIC_URL=\"/z8iZqHcgrbAntF8SZMWmNMYLvJB5VjFAMndzo\" REACT_APP_APP_NAME=\"Crypto 2048\" react-scripts build",
-    "bundle:server": "NODE_ENV=production an bundle -w api/webpack.blocklet.js --create-release",
-    "deploy": "npm run clean && npm run bundle && an deploy .blocklet/bundle --skip-hooks",
+    "bundle:server": "NODE_ENV=production abtnode bundle -w api/webpack.blocklet.js --create-release",
+    "deploy": "npm run clean && npm run bundle && abtnode deploy .blocklet/bundle --skip-hooks",
     "prerelease": "npm run bundle && rm -f .blocklet/bundle/build/**/**/*.js.map",
     "postrelease": "node tools/post-publish.js",
     "test": "react-scripts test",

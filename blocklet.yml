@@ -42,6 +42,13 @@ scripts:
   preDeploy: npm run bundle
   preStart: node api/hooks/pre-start.js
   dev: npm run start
+interfaces:
+  - type: web
+    name: publicUrl
+    path: /
+    prefix: '*'
+    port: BLOCKLET_PORT
+    protocol: tcp
 specVersion: 1.0.1
 color: primary
 capabilities:
