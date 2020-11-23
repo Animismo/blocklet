@@ -16,6 +16,8 @@ keywords:
   - blockchain
   - forge
   - game
+files:
+  - api/hooks/pre-start.js
 screenshots: []
 environments:
   - name: LOCAL_CHAIN_ID
@@ -39,7 +41,6 @@ environments:
     default: 'https://zinc.abtnetwork.io/api'
     secure: false
 scripts:
-  preDeploy: npm run bundle
   preStart: node api/hooks/pre-start.js
   dev: npm run start
 interfaces:
