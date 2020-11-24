@@ -3,7 +3,7 @@ description: >-
   A simple blockchain game that demos capabilities of ArcBlock technologies such
   as blockchain, did, abtnode
 title: Crypto 2048
-version: 0.5.2
+version: 0.5.3
 keywords:
   - blockchain
   - forge
@@ -53,8 +53,6 @@ scripts:
   preStart: node api/hooks/pre-start.js
   dev: npm run start
 specVersion: 1.0.1
-capabilities:
-  dynamicPathPrefix: true
 did: z8iZqHcgrbAntF8SZMWmNMYLvJB5VjFAMndzo
 interfaces:
   - type: web

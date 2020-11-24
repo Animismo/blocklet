@@ -1,3 +1,6 @@
+## 0.5.3 (November 24, 2020)
+
+
 ## 0.5.2 (November 24, 2020)
   - update blocklet.yml
 
