@@ -1,13 +1,14 @@
 name: crypto-2048
-title: Crypto 2048
-version: 0.5.1
 description: >-
   A simple blockchain game that demos capabilities of ArcBlock technologies such
   as blockchain, did, abtnode
+title: Crypto 2048
+version: 0.5.2
 keywords:
   - blockchain
   - forge
   - game
+license: Apache-2.0
 files:
   - api/hooks/pre-start.js
   - build
@@ -19,8 +20,7 @@ author:
   email: wangshijun2010@gmail.com
 repository:
   type: git
-  url: 'https://github.com/blocklet/crypto-2048'
-license: Apache-2.0
+  url: 'git+https://github.com/blocklet/crypto-2048.git'
 group: dapp
 main: api/index.js
 community: ''
@@ -63,3 +63,5 @@ interfaces:
     prefix: '*'
     port: BLOCKLET_PORT
     protocol: tcp
+timeout:
+  start: 10
