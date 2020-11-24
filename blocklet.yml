@@ -1,24 +1,33 @@
 name: crypto-2048
+title: Crypto 2048
+version: 0.5.1
 description: >-
   A simple blockchain game that demos capabilities of ArcBlock technologies such
   as blockchain, did, abtnode
-group: dapp
-version: 0.5.1
-main: api/index.js
-title: Crypto 2048
-author:
-  name: wangshijun
-  email: wangshijun2010@gmail.com
-community: ''
-documentation: ''
-homepage: ''
 keywords:
   - blockchain
   - forge
   - game
 files:
   - api/hooks/pre-start.js
+  - build
+  - screenshots
+  - blocklet.md
+  - README.md
+author:
+  name: wangshijun
+  email: wangshijun2010@gmail.com
+repository:
+  type: git
+  url: 'https://github.com/blocklet/crypto-2048'
+license: Apache-2.0
+group: dapp
+main: api/index.js
+community: ''
+documentation: ''
+homepage: ''
 screenshots: []
+support: support@arcblock.io
 environments:
   - name: LOCAL_CHAIN_ID
     description: ID of the chain game coin lives
@@ -43,6 +52,10 @@ environments:
 scripts:
   preStart: node api/hooks/pre-start.js
   dev: npm run start
+specVersion: 1.0.1
+capabilities:
+  dynamicPathPrefix: true
+did: z8iZqHcgrbAntF8SZMWmNMYLvJB5VjFAMndzo
 interfaces:
   - type: web
     name: publicUrl
@@ -50,10 +63,3 @@ interfaces:
     prefix: '*'
     port: BLOCKLET_PORT
     protocol: tcp
-specVersion: 1.0.1
-color: primary
-capabilities:
-  dynamicPathPrefix: true
-charging:
-  price: 0
-did: z8iZqHcgrbAntF8SZMWmNMYLvJB5VjFAMndzo

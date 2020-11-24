@@ -8,13 +8,6 @@
     "forge",
     "game"
   ],
-  "files": [
-    "blocklet.js",
-    "api",
-    "build",
-    "screenshots",
-    "blocklet.md"
-  ],
   "publishConfig": {
     "access": "public"
   },
