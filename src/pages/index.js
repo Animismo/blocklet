@@ -8,6 +8,7 @@ import Button from '@arcblock/ux/lib/Button';
 import Layout from '../components/layout';
 import Game from '../components/game';
 import { SessionContext } from '../libs/session';
+import { getWebWalletUrl } from '../libs/util';
 
 export default function IndexPage() {
   const { session, api } = useContext(SessionContext);
@@ -57,6 +58,8 @@ export default function IndexPage() {
     }
   };
 
+  const webWalletUrl = getWebWalletUrl();
+
   return (
     <Layout title="Home">
       <Main>
@@ -94,6 +97,7 @@ export default function IndexPage() {
           onClose={onAuthClose}
           onSuccess={onAuthSuccess}
           checkTimeout={5 * 60 * 1000}
+          webWalletUrl={webWalletUrl}
           extraParams={{}}
           messages={{
             title: 'Signature Required',
@@ -111,6 +115,7 @@ export default function IndexPage() {
           onClose={onTrophyClose}
           onSuccess={onTrophySuccess}
           checkTimeout={5 * 60 * 1000}
+          webWalletUrl={webWalletUrl}
           extraParams={{}}
           messages={{
             title: 'Claim Trophy',
@@ -128,6 +133,7 @@ export default function IndexPage() {
           onClose={onSwapClose}
           onSuccess={onSwapSuccess}
           checkTimeout={5 * 60 * 1000}
+          webWalletUrl={webWalletUrl}
           extraParams={{ tid: swapOpen }}
           messages={{
             title: 'Buy Game Coins',
