@@ -1,3 +1,6 @@
+## 0.5.6 (December 25, 2020)
+
+
 ## 0.5.5 (December 25, 2020)
 
 - fix: login with web wallet
