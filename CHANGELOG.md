@@ -1,3 +1,8 @@
+## 0.5.4 (December 25, 2020)
+  - feat: enable web wallet
+  - chore: bump forge sdk version
+  - [skip ci] Update README.md
+
 ## 0.5.3 (November 24, 2020)
 
 
