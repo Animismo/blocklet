@@ -12,6 +12,7 @@ import Center from '@arcblock/ux/lib/Center';
 
 import HomePage from './pages/index';
 
+import { getWebWalletUrl } from './libs/util';
 import { SessionProvider } from './libs/session';
 
 const theme = create();
@@ -36,12 +37,12 @@ if (window.blocklet && window.blocklet.prefix) {
   apiPrefix = window.env.apiPrefix;
 }
 
-console.log(`apiPrefix:${apiPrefix}`);
+const webWalletUrl = getWebWalletUrl();
 
 export const App = () => (
   <MuiThemeProvider theme={theme}>
     <ThemeProvider theme={theme}>
-      <SessionProvider serviceHost={apiPrefix} autoLogin>
+      <SessionProvider serviceHost={apiPrefix} webWalletUrl={webWalletUrl} autoLogin>
         {({ session }) => {
           if (session.loading) {
             return (
@@ -79,7 +80,6 @@ export default () => {
   if (window.blocklet && window.blocklet.prefix) {
     basename = window.blocklet.prefix;
   }
-  console.log(`basename:${basename}`);
   return (
     <Router basename={basename}>
       <WrappedApp />
