@@ -37,38 +37,39 @@ if (window.blocklet && window.blocklet.prefix) {
   apiPrefix = window.env.apiPrefix;
 }
 
-const webWalletUrl = getWebWalletUrl();
+export const App = () => {
+  const webWalletUrl = getWebWalletUrl();
+  return (
+    <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <SessionProvider serviceHost={apiPrefix} webWalletUrl={webWalletUrl} autoLogin>
+          {({ session }) => {
+            if (session.loading) {
+              return (
+                <Center>
+                  <CircularProgress />
+                </Center>
+              );
+            }
 
-export const App = () => (
-  <MuiThemeProvider theme={theme}>
-    <ThemeProvider theme={theme}>
-      <SessionProvider serviceHost={apiPrefix} webWalletUrl={webWalletUrl} autoLogin>
-        {({ session }) => {
-          if (session.loading) {
             return (
-              <Center>
-                <CircularProgress />
-              </Center>
+              <React.Fragment>
+                <CssBaseline />
+                <GlobalStyle />
+                <div className="wrapper">
+                  <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Redirect to="/" />
+                  </Switch>
+                </div>
+              </React.Fragment>
             );
-          }
-
-          return (
-            <React.Fragment>
-              <CssBaseline />
-              <GlobalStyle />
-              <div className="wrapper">
-                <Switch>
-                  <Route exact path="/" component={HomePage} />
-                  <Redirect to="/" />
-                </Switch>
-              </div>
-            </React.Fragment>
-          );
-        }}
-      </SessionProvider>
-    </ThemeProvider>
-  </MuiThemeProvider>
-);
+          }}
+        </SessionProvider>
+      </ThemeProvider>
+    </MuiThemeProvider>
+  );
+};
 
 const WrappedApp = withRouter(App);
 
