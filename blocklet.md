@@ -109,7 +109,7 @@ The video includes walk through guides that include:
 
 ## Game publish as a blocklet: init
 
-- `abtnode blocklet:init`: update meta data
+- `blocklet init`: update meta data
   - Add `main`
   - Add `provider`
   - Add `requiredEnvironments`
@@ -117,7 +117,7 @@ The video includes walk through guides that include:
 
 ## Game publish as a blocklet: bundle
 
-- `abtnode bundle`: bundle the blocklet
+- `blocklet bundle`: bundle the blocklet
   - Add bundle scripts
   - Test bundle scripts
 
@@ -126,7 +126,7 @@ The video includes walk through guides that include:
 - Add `pre-start` hook which does following work
   - Declare game account on chain
   - Get some game coin into the game account
-- `abtnode deploy`: deploy to local ABT Node
+- `blocklet deploy`: deploy to local ABT Node
   - Add pre-deploy hook
 
 ## Game publish as a blocklet: publish

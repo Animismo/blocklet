@@ -1,3 +1,8 @@
+## 0.5.7 (January 08, 2021)
+  - replace abtnode command with blocklet command
+  - upgrade @abtnode dep
+  - [skip ci] Update README.md
+
 ## 0.5.6 (December 25, 2020)
 
 
