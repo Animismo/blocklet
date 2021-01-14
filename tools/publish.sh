@@ -13,6 +13,10 @@ npm run bundle
 npm publish .blocklet/bundle
 make release
 
+echo "publishing to blocklet registry"
+blocklet config registry ${BLOCKLET_REGISTRY}
+blocklet publish --developer-sk ${ABTNODE_DEV_SK}
+
 # deploy to remote ABT Node
 set +e
 NAME=$(cat package.json | grep name | head -n 1 |  awk '{print $2}' | sed 's/"//g' | sed 's/,//g')
@@ -38,6 +42,5 @@ if [ "${AWS_NODE_ENDPOINT}" != "" ]; then
   fi
 fi
 
-# trigger ArcBlock/blocklets repo release
-echo "trigger ArcBlock/blocklets repo release"
-.makefiles/trigger_registry_build.sh
+curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"${NAME} v${VERSION} was successfully published\"}" ${SLACK_WEBHOOK}
+
