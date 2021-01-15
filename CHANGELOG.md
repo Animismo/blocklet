@@ -1,3 +1,6 @@
+## 0.6.0 (January 15, 2021)
+  - [skip ci] Update README.md
+
 ## 0.5.9 (January 15, 2021)
   - [skip ci] Update README.md
 
