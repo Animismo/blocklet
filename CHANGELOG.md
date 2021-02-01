@@ -1,3 +1,7 @@
+## 0.7.0 (January 29, 2021)
+- update SessionProvider
+- migrate auth from custom auth to @abtnode/auth-service
+
 ## 0.6.0 (January 15, 2021)
   - [skip ci] Update README.md
 

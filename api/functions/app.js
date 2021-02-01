@@ -7,10 +7,8 @@ const express = require('express');
 const serverless = require('serverless-http');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const bearerToken = require('express-bearer-token');
 const fallback = require('express-history-api-fallback');
 
-const { decode } = require('../libs/jwt');
 const { handlers, swapHandlers } = require('../libs/auth');
 
 const isProduction = process.env.NODE_ENV === 'production' || !!process.env.BLOCKLET_APP_ID;
@@ -44,21 +42,14 @@ server.use(
   })
 );
 
-server.use(bearerToken());
 server.use((req, res, next) => {
-  if (!req.token) {
-    next();
-    return;
+  if (req.headers['x-user-did']) {
+    req.user = {
+      did: req.headers['x-user-did'],
+    };
   }
 
-  decode(req.token)
-    .then(user => {
-      req.user = user;
-      next();
-    })
-    .catch(() => {
-      next();
-    });
+  next();
 });
 
 const router = express.Router();
@@ -67,7 +58,7 @@ handlers.attach(Object.assign({ app: router }, require('../routes/auth/login')))
 handlers.attach(Object.assign({ app: router }, require('../routes/auth/authorize')));
 handlers.attach(Object.assign({ app: router }, require('../routes/auth/trophy')));
 swapHandlers.attach(Object.assign({ app: router }, require('../routes/auth/swap')));
-require('../routes/session').init(router);
+require('../routes/user').init(router);
 require('../routes/game').init(router);
 
 if (isProduction) {

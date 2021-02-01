@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import DidAuth from '@arcblock/did-react/lib/Auth';
 import Button from '@arcblock/ux/lib/Button';
+import Center from '@arcblock/ux/lib/Center';
 
 import Layout from '../components/layout';
 import Game from '../components/game';
@@ -13,9 +15,26 @@ import { getWebWalletUrl } from '../libs/util';
 export default function IndexPage() {
   const { session, api } = useContext(SessionContext);
   const { chainId, assetChainId } = window.env;
-  const { [chainId]: chain, [assetChainId]: assetChain } = session;
+
+  const [{ [chainId]: chain, [assetChainId]: assetChain }, setChainInfo] = useState({
+    [chainId]: null,
+    [assetChainId]: null,
+  });
+
+  const [loading, setLoading] = useState(false);
 
   const [swapOpen, setSwapOpen] = useState(false);
+
+  const refresh = (showLoading = false) => {
+    setLoading(!!showLoading);
+    api.get('/api/did/user').then(res => {
+      setLoading(false);
+      setChainInfo(res.data);
+    }).catch(() => {
+      setLoading(false);
+    });
+  };
+
   const onSwapClose = () => setSwapOpen(false);
   const onSwapOpen = async () => {
     const res = await api.post('/api/did/swap', {});
@@ -23,6 +42,14 @@ export default function IndexPage() {
   };
   const onSwapSuccess = () => {
     setTimeout(onSwapClose, 1000);
+    let times = 5;
+    const timeId = setInterval(() => {
+      if (times < 1) {
+        clearInterval(timeId);
+      }
+      times -= 1;
+      refresh();
+    }, 6000);
   };
 
   const [authOpen, setAuthOpen] = useState(false);
@@ -35,7 +62,7 @@ export default function IndexPage() {
     api
       .post('/api/game/start')
       .then(async data => {
-        await session.refresh();
+        await refresh();
         done(null, data);
       })
       .catch(err => {
@@ -59,6 +86,22 @@ export default function IndexPage() {
   };
 
   const webWalletUrl = getWebWalletUrl();
+
+  useEffect(() => {
+    refresh(true);
+  }, []); // eslint-disable-line
+
+  if (loading) {
+    return (
+      <Center>
+        <CircularProgress />
+      </Center>
+    );
+  }
+
+  if (!chain || !assetChain) {
+    return null;
+  }
 
   return (
     <Layout title="Home">

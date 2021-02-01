@@ -4,7 +4,7 @@ const env = require('../libs/env');
 
 module.exports = {
   init(app) {
-    app.get('/api/did/session', async (req, res) => {
+    app.get('/api/did/user', async (req, res) => {
       const [chainState, assetChainState] = await Promise.all([
         ForgeSDK.getForgeState({ conn: env.chainId }),
         ForgeSDK.getForgeState({ conn: env.assetChainId }),

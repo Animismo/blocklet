@@ -42,7 +42,10 @@ export const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
-        <SessionProvider serviceHost={apiPrefix} webWalletUrl={webWalletUrl} autoLogin>
+        <SessionProvider
+          serviceHost={apiPrefix}
+          webWalletUrl={webWalletUrl}
+        >
           {({ session }) => {
             if (session.loading) {
               return (
@@ -52,18 +55,22 @@ export const App = () => {
               );
             }
 
-            return (
-              <React.Fragment>
-                <CssBaseline />
-                <GlobalStyle />
-                <div className="wrapper">
-                  <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Redirect to="/" />
-                  </Switch>
-                </div>
-              </React.Fragment>
-            );
+            if (session.user) {
+              return (
+                <React.Fragment>
+                  <CssBaseline />
+                  <GlobalStyle />
+                  <div className="wrapper">
+                    <Switch>
+                      <Route exact path="/" component={HomePage} />
+                      <Redirect to="/" />
+                    </Switch>
+                  </div>
+                </React.Fragment>
+              );
+            }
+
+            return null;
           }}
         </SessionProvider>
       </ThemeProvider>

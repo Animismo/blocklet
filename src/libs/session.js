@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import createSessionContext from '@arcblock/did-react/lib/Session';
+import { createAuthServiceSessionContext } from '@arcblock/did-react/lib/Session';
 
-const { SessionProvider, SessionContext, SessionConsumer, withSession } = createSessionContext();
+const { SessionProvider, SessionContext, SessionConsumer, withSession } = createAuthServiceSessionContext();
 export { SessionProvider, SessionContext, SessionConsumer, withSession };
