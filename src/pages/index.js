@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -27,12 +28,15 @@ export default function IndexPage() {
 
   const refresh = (showLoading = false) => {
     setLoading(!!showLoading);
-    api.get('/api/did/user').then(res => {
-      setLoading(false);
-      setChainInfo(res.data);
-    }).catch(() => {
-      setLoading(false);
-    });
+    api
+      .get('/api/did/user')
+      .then((res) => {
+        setLoading(false);
+        setChainInfo(res.data);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   const onSwapClose = () => setSwapOpen(false);
@@ -58,14 +62,14 @@ export default function IndexPage() {
     setTimeout(onAuthClose, 1000);
   };
 
-  const onGameStart = done => {
+  const onGameStart = (done) => {
     api
       .post('/api/game/start')
-      .then(async data => {
+      .then(async (data) => {
         await refresh();
         done(null, data);
       })
-      .catch(err => {
+      .catch((err) => {
         done(err.message);
       });
   };
@@ -79,7 +83,7 @@ export default function IndexPage() {
   const onTrophySuccess = () => {
     setTimeout(onTrophyClose, 1000);
   };
-  const onGameOver = state => {
+  const onGameOver = (state) => {
     if (state.score > 1024) {
       setHasTrophy(true);
     }
@@ -90,6 +94,24 @@ export default function IndexPage() {
   useEffect(() => {
     refresh(true);
   }, []); // eslint-disable-line
+
+  let prefix = '/';
+  if (window.blocklet && window.blocklet.prefix) {
+    // eslint-disable-next-line prefer-destructuring
+    prefix = window.blocklet.prefix;
+  } else if (window.env && window.env.apiPrefix) {
+    prefix = window.env.apiPrefix;
+  }
+
+  let apiPrefix = prefix.replace(/^\/+/, '').replace(/\/+$/, '');
+  if (apiPrefix) {
+    apiPrefix = `/${apiPrefix}`;
+  }
+
+  const onLogout = () => {
+    session.logout();
+    window.location.href = apiPrefix;
+  };
 
   if (loading) {
     return (
@@ -129,6 +151,9 @@ export default function IndexPage() {
           )}
           <Button size="small" variant="outlined" color="secondary" onClick={onSwapOpen}>
             Buy Coins
+          </Button>
+          <Button size="small" color="danger" variant="outlined" onClick={onLogout}>
+            Logout
           </Button>
         </div>
       </Main>
