@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-curly-newline */
 import React from 'react';
@@ -19,7 +20,7 @@ const theme = create();
 
 const GlobalStyle = createGlobalStyle`
   a {
-    color: ${props => props.theme.colors.green};
+    color: ${(props) => props.theme.colors.green};
     text-decoration: none;
   }
 
@@ -42,10 +43,7 @@ export const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
-        <SessionProvider
-          serviceHost={apiPrefix}
-          webWalletUrl={webWalletUrl}
-        >
+        <SessionProvider serviceHost={apiPrefix} webWalletUrl={webWalletUrl}>
           {({ session }) => {
             if (session.loading) {
               return (
