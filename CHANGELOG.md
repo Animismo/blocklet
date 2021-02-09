@@ -1,24 +1,32 @@
+## 0.8.0 (February 09, 2021)
+
+- support logout
+
 ## 0.7.0 (January 29, 2021)
+
 - update SessionProvider
 - migrate auth from custom auth to @abtnode/auth-service
 
 ## 0.6.0 (January 15, 2021)
-  - [skip ci] Update README.md
+
+- [skip ci] Update README.md
 
 ## 0.5.9 (January 15, 2021)
-  - [skip ci] Update README.md
+
+- [skip ci] Update README.md
 
 ## 0.5.8 (January 14, 2021)
-  - feat: support publish to blocklet registry
-  - [skip ci] Update README.md
+
+- feat: support publish to blocklet registry
+- [skip ci] Update README.md
 
 ## 0.5.7 (January 08, 2021)
-  - replace abtnode command with blocklet command
-  - upgrade @abtnode dep
-  - [skip ci] Update README.md
+
+- replace abtnode command with blocklet command
+- upgrade @abtnode dep
+- [skip ci] Update README.md
 
 ## 0.5.6 (December 25, 2020)
-
 
 ## 0.5.5 (December 25, 2020)
 
