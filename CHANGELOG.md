@@ -1,3 +1,7 @@
+## 0.9.0 (March 24, 2021)
+
+- build: update the prefix of static resource url
+
 ## 0.8.0 (February 09, 2021)
 
 - support logout

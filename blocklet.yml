@@ -3,7 +3,7 @@ description: >-
   A simple blockchain game that demos capabilities of ArcBlock technologies such
   as blockchain, did, abtnode
 title: Crypto 2048
-version: 0.8.0
+version: 0.9.0
 keywords:
   - blockchain
   - forge
@@ -69,6 +69,7 @@ interfaces:
 timeout:
   start: 10
 requirements:
-  abtnode: '>=1.1.7'
+  abtnode: '>=1.2.5'
   os: '*'
   cpu: '*'
+children: []
